@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface CharacterDAO extends CrudRepository<Character, Integer> {
+public interface CharacterDAO extends JpaRepository<Character, Integer> {
     List<Character> findAll();
     Character findById(int id);
     void deleteById(int id);
