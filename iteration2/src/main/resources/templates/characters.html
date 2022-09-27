@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Characters List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900">
+    <div class="flex flex-col items-center">
+        <div class="w-3/4 flex flex-col items-center"/>
+            <div th:insert="~{header :: logo}" class="mt-6">
+            </div>
+            <div class="w-2/3 py-2">
+                <table class="min-w-full">
+                    <thead class="bg-slate-700">
+                        <tr>
+                            <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                                id
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                                Name
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                                Type
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                                Life
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-100 px-6 py-4 text-left">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-slate-800" th:each ="character : ${players}">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100" th:utext="${character.id}"></td>
+                            <td class="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap" th:utext="${character.name}"></td>
+                            <td class="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap" th:utext="${character.type}"></td>
+                            <td class="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap" th:utext="${character.life}"></td>
+                            <td class="flex flex-row text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                                <a th:href="@{'/characters/' + ${character.id}}">
+                                    <button
+                                            class="text-white mr-2 bg-red-700 hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                                        Voir
+                                    </button>
+                                </a>
+                                <a th:href="@{'/characters/update/' + ${character.id}}">
+                                    <button
+                                            class="text-white mr-2 bg-red-700 hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                                        Modifier
+                                    </button>
+                                </a>
+                                <form  th:action="@{'/characters/' + ${character.id}}" th:method="delete"/>
+                                    <button
+                                            type="submit"
+                                            class="text-white mr-2 bg-red-700 hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                                        Supprimer
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <a th:href="@{/characters/add}">
+                    <button class="text-white mt-4 bg-red-700 hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" >
+                        Ajouter un personnage
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Characters List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900">
+    <div class="flex flex-col items-center">
+        <div class="w-3/4 flex flex-col items-center"/>
+            <div th:insert="~{header :: logo}" class="mt-6"></div>
+            <div class="w-2/3 py-2">
+                <form action="#"
+                      th:action="${method} == 'put' ? @{'/characters/' + ${character.id}} : @{/characters/add}"
+                      th:method="${method}"
+                      th:object="${character}" >
+                    <div class="relative z-0 mb-6 w-full group">
+                        <input
+                                th:field="*{name}"
+                                type="text"
+                                name="name"
+                                id="character_name"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer" placeholder=" " required />
+                        <label
+                                for="character_name"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-red-500 peer-focus:dark:text-red-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                            Nom du personnage
+                        </label>
+                    </div>
+                    <div class="relative z-0 mb-6 w-full group">
+                        <label for="character_type" class="sr-only">Character Type</label>
+                        <select th:field="*{type}" id="character_type" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                            <option value="" selected>Choisir un type de personnage</option>
+                            <option th:value="Magicien" value="magicien" th:text="Magicien"></option>
+                            <option th:value="Guerrier" value="guerrier" th:text="Guerrier"></option>
+                        </select>
+                    </div>
+                    <div class="relative z-0 mb-6 w-full group">
+                        <input
+                                type="number"
+                                th:field="*{life}"
+                                name="life"
+                                id="character_life"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"  required />
+                        <label
+                                for="character_life"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-red-500 peer-focus:dark:text-red-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                            Points de vie
+                        </label>
+                    </div>
+                    <input
+                            type="submit"
+                            class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                        Valider
+                    </input>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

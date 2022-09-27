@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900">
+    <div class="flex flex-col items-center">
+        <div class="w-3/4 flex flex-col items-center"/>
+            <div th:insert="~{header :: logo}" class="mt-6"></div>
+            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                </div>
+                <img th:if="${character.type == 'Magicien'}"  src="../static/image/wizard.jpg" width="300" height="420" th:src="@{/image/wizard.png}" alt="photo magicien">
+                <img th:unless="${character.type == 'Magicien'}"  src="../static/image/warrior.png" width="300" height="420" th:src="@{/image/warrior.png}" alt="photo guerrier">
+                <div class="px-6 py-4">
+                    <div class="font-bold italic text-red-500 text-xl mb-2" th:utext="${character.name}"></div>
+                    <p class="text-gray-100 text-base" th:utext="${character.type} + ' possédant un niveau de vie de ' + ${character.life}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
