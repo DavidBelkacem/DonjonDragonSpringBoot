@@ -67,6 +67,4 @@ public class CharactersClient {
             restTemplate.put(URL_UPDATE_CHARACTER, character);
             return "redirect:/characters";
         }
-
-
 }

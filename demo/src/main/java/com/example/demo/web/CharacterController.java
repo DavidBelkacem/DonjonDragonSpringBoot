@@ -7,17 +7,13 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Api("API pour les opérations CRUD sur les personnages.")
 @RestController
 public class CharacterController {
     @Autowired
     private CharacterDAO characterDAO;
-    public static int id = 0;
-
 
     @ApiOperation(value = "Récupère la liste de tous les personnages en base de données")
     @GetMapping("/characters")
@@ -36,13 +32,6 @@ public class CharacterController {
     @ApiOperation(value = "Ajoute un nouveau personnage dans la liste de tous les personnages")
     @PostMapping("/characters/add")
     public void addCharacter(@RequestBody Character character) {
-        int maxIndex = 0;
-        for (Character oneCharacter : characterDAO.findAll()) {
-            if (oneCharacter.getId() > maxIndex) {
-                maxIndex = oneCharacter.getId();
-            }
-        }
-        character.setId(maxIndex + 1);
         characterDAO.save(character);
     }
 
